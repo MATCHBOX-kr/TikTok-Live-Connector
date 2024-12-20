@@ -1,5 +1,5 @@
 {
-  "name": "tiktok-live-connector",
+  "name": "@matchbox/tiktok-live-connector",
   "version": "1.2.2",
   "description": "Node.js module to receive live stream chat events like comments and gifts from TikTok LIVE",
   "main": "index.js",
