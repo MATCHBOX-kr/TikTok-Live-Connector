@@ -2,7 +2,9 @@ const { EventEmitter } = require('node:events');
 const { getUuc } = require('./tiktokUtils');
 const pkg = require('../../package.json');
 const { SignatureError } = require('./tiktokErrors');
+const { default:fetchAdapter } = require('axios/lib/adapters/fetch');
 const axios = require('axios').create({
+    adapter: fetchAdapter,
     timeout: 5000,
     headers: {
         'User-Agent': `${pkg.name}/${pkg.version} ${process.platform}`,
@@ -51,7 +53,11 @@ async function signRequest(providerPath, url, headers, cookieJar, signProviderOp
     try {
         for (signHost of hostsToTry) {
             try {
-                signResponse = await axios.get(signHost + providerPath, { params, headers: signProviderOptions?.headers, responseType: 'json' });
+                signResponse = await axios.get(signHost + providerPath, {
+                    params,
+                    headers: signProviderOptions?.headers,
+                    responseType: 'json',
+                });
 
                 if (signResponse.status === 200 && typeof signResponse.data === 'object') {
                     break;

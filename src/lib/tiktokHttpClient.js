@@ -2,6 +2,7 @@ const axios = require('axios');
 const TikTokCookieJar = require('./tiktokCookieJar');
 const { deserializeMessage } = require('./webcastProtobuf.js');
 const { signWebcastRequest } = require('./tiktokSignatureProvider');
+const { default:fetchAdapter } = require('axios/lib/adapters/fetch');
 
 const Config = require('./webcastConfig.js');
 
@@ -19,6 +20,7 @@ class TikTokHttpClient {
                 ...Config.DEFAULT_REQUEST_HEADERS,
                 ...customHeaders,
             },
+            adapter: fetchAdapter,
             ...(axiosOptions || {}),
         });
 

@@ -1,8 +1,7 @@
 const Config = require('./webcastConfig.js');
-const websocket = require('websocket');
 const { deserializeWebsocketMessage, serializeMessage } = require('./webcastProtobuf.js');
 
-class WebcastWebsocket extends websocket.client {
+class WebcastWebsocket extends WebSocket {
     constructor(wsUrl, cookieJar, clientParams, wsParams, customHeaders, websocketOptions) {
         super();
         this.pingInterval = null;

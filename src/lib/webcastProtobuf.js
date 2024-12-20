@@ -1,4 +1,4 @@
-const protobufjs = require('protobufjs');
+const protobufjs = require('../protobuf-es');
 const util = require('node:util');
 const zlib = require('node:zlib');
 const unzip = util.promisify(zlib.unzip);
